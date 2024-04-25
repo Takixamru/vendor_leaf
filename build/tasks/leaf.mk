@@ -20,4 +20,5 @@ SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 leaf: $(DEFAULT_GUAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LEAF_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(LEAF_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LEAF_TARGET_PACKAGE).sha256sum
+	$(hide) ./vendor/leaf/tools/generate_json_build_info.sh $(LEAF_TARGET_PACKAGE)
 	@echo "Package Complete: $(LEAF_TARGET_PACKAGE)" >&2
